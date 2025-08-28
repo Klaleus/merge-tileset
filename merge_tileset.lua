@@ -82,7 +82,8 @@ local function merge(axis, cmd_args)
 
         if tileset_width < pixel_x + pixel_width then
             tileset_width = pixel_x + pixel_width
-        elseif tileset_height < pixel_y + pixel_height then
+        end
+        if tileset_height < pixel_y + pixel_height then
             tileset_height = pixel_y + pixel_height
         end
 
