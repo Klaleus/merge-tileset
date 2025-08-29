@@ -19,7 +19,7 @@
 
 -- https://github.com/klaleus/script-merge-tileset
 
--- luajit merge_tileset.lua <source_path> <format_path> [<destination_path>]
+-- luajit merge_tileset.lua <source> <destination> <format>
 
 --------------------------------------------------------------------------------
 
@@ -27,14 +27,10 @@ if arg[1]:sub(-1) ~= "/" then
     arg[1] = arg[1] .. "/"
 end
 
-if not arg[3] then
-    arg[3] = "tileset.png"
-end
-
--- Example: luajit merge_tileset.lua example/ example/tileset.fmt
+-- Example: luajit merge_tileset.lua example/ tileset.png example/tileset.fmt
 -- arg[1] -> "example/"
--- arg[1] -> "example/tileset.fmt"
 -- arg[2] -> "tileset.png"
+-- arg[3] -> "example/tileset.fmt"
 
 -- https://github.com/libvips/lua-vips
 -- lua-vips seems to throw its own errors, so no need to assert against it.
@@ -44,7 +40,7 @@ local vips = require("vips")
 -- This could be added as a script parameter if flexibility is needed in the future.
 local tileset = vips.Image.black(4096, 4096, { bands = 4 })
 
-local format, err = io.open(arg[2], "r")
+local format, err = io.open(arg[3], "r")
 assert(format, err)
 
 local lines = {}
@@ -121,6 +117,6 @@ for i = 1, #lines do
 end
 
 local tileset = tileset:crop(0, 0, tileset_width, tileset_height)
-tileset:write_to_file(arg[3])
+tileset:write_to_file(arg[2])
 
 print("Successfully merged " .. tile_count .. " tiles.")
