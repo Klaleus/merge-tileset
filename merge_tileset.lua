@@ -17,7 +17,7 @@
 --
 --     3. This notice may not be removed or altered from any source distribution.
 
--- https://github.com/klaleus/script-merge-tileset
+-- https://github.com/klaleus/merge-tileset
 
 -- luajit merge_tileset.lua <source> <destination> <format>
 
