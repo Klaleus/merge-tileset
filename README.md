@@ -31,11 +31,10 @@ Only PNG images are supported.
 The example project can be tested with the following command:
 
 ```
-$ luajit crop_tileset.lua example/ tileset.png example/tileset.fmt
+$ luajit merge_tileset.lua example/ tileset.png example/tileset.fmt
 ```
 
-* The source tiles are read from the `example/` directory.
-* The resulting tileset will be created as `tileset.png`.
+Source tiles are copied from `example/`, the resulting tileset is saved as `tileset.png`, and the format file is located at `example/format.fmt`.
 
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
