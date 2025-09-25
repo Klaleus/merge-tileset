@@ -58,8 +58,8 @@ Format files are kept as simple as possible with minimal commands:
 
 * `base <size>` Defines the width and height of subsequent `select` operations. Default is `base 8`.
 * `select <x> <y>` Selects the starting tileset position of the next merge operation. Arguments are relative to the `base` tile size. Coordinates `x = 1` and `y = 1` correspond to the top-left of the tileset.
-* `mergex <tile_name> ...` Merges sequential tiles horizontally. The amount of merges is determined by how many `tile_name` arguments are passed, where each name corresponds to an image in the source directory `example/`.
-* `mergey <tile_name> ...` Merges sequential tiles vertically. The amount of merges is determined by how many `tile_name` arguments are passed, where each name corresponds to an image in the source directory `example/`.
+* `mergex <tile_name> ...` Merges sequential tiles horizontally.
+* `mergey <tile_name> ...` Merges sequential tiles vertically.
 
 Faulty arguments to these commands are not protected against and will result in undefined behavior. Lines that do not start with one of the above commands are ignored.
 
