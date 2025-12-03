@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- Header
+-- License
 --------------------------------------------------------------------------------
 
 -- Copyright (c) 2025 Klaleus
@@ -17,9 +17,11 @@
 --
 --     3. This notice may not be removed or altered from any source distribution.
 
--- https://github.com/klaleus/merge-tileset
+--------------------------------------------------------------------------------
 
--- luajit merge_tileset.lua <source> <destination> <format>
+-- GitHub: https://github.com/klaleus/merge-tileset
+
+-- Usage: luajit merge_tileset.lua <source> <destination> <format>
 
 --------------------------------------------------------------------------------
 

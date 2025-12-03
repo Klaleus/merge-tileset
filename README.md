@@ -2,8 +2,6 @@
 
 Lua script that merges individual tiles into a tileset.
 
-Please click the ☆ button on GitHub if this repository is useful. Thank you!
-
 ## Installation
 
 Install libvips, a C library that performs image-related operations:  
@@ -28,13 +26,9 @@ Only PNG images are supported.
 
 ## Example
 
-The example project can be tested with the following command:
-
 ```
 $ luajit merge_tileset.lua example/ tileset.png example/tileset.fmt
 ```
-
-Source tiles are copied from `example/`, the resulting tileset is saved as `tileset.png`, and the format file is located at `example/format.fmt`.
 
 <img width="240" height="160" alt="tileset.png" src="https://github.com/user-attachments/assets/545097a9-36ad-4c00-806e-3be993ba7b15" />
 
