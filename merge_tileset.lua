@@ -25,43 +25,38 @@
 
 --------------------------------------------------------------------------------
 
-if arg[1]:sub(-1) ~= "/" then
-    arg[1] = arg[1] .. "/"
-end
-
 -- Example: luajit merge_tileset.lua example/ tileset.png example/tileset.fmt
 -- arg[1] -> "example/"
 -- arg[2] -> "tileset.png"
 -- arg[3] -> "example/tileset.fmt"
 
+if arg[1]:sub(-1) ~= "/" then
+    arg[1] = arg[1] .. "/"
+end
+
 -- https://github.com/libvips/lua-vips
--- lua-vips seems to throw its own errors, so no need to assert against it.
 local vips = require("vips")
 
--- Maximum tileset size is 4096 x 4096.
--- This could be added as a script parameter if flexibility is needed in the future.
+-- Maximum tileset size is 4096 x 4096, increase if needed.
 local tileset = vips.Image.black(4096, 4096, { bands = 4 })
 
 local format, err = io.open(arg[3], "r")
 assert(format, err)
 
 local lines = {}
-
 for line in format:lines() do
-    lines[#lines + 1] = line
+    local line_index = #lines + 1
+    lines[line_index] = line
 end
 
 format:close()
 
-local tileset_width = 0
-local tileset_height = 0
-
-local tile_count = 0
-
-local tile_scaling_factor = 8
-
 local tile_x = 1
 local tile_y = 1
+local tileset_width = 0
+local tileset_height = 0
+local tile_count = 0
+local tile_scaling_factor = 8
 
 local function merge(axis, cmd_args)
     local current_merge_length = 0
@@ -113,12 +108,9 @@ for i = 1, #lines do
     elseif cmd == "merge" then
         print("Command `merge` does not exist. Did you mean `mergex` or `mergey`?")
     end
-
-    -- Lines that do not start with any of the above commands are ignored.
-    -- This is useful for comments and whitespace.
 end
 
 local tileset = tileset:crop(0, 0, tileset_width, tileset_height)
 tileset:write_to_file(arg[2])
 
-print("Successfully merged " .. tile_count .. " tiles.")
+print("Successfully merged " .. tile_count .. " tiles")
