@@ -30,15 +30,15 @@
 -- arg[2] -> "tileset.png"
 -- arg[3] -> "example/tileset.fmt"
 
+assert(#arg == 3, "You must specify three arguments: #arg == " .. #arg)
+assert(arg[2]:sub(-4) == ".png", "Your destination image must have a .png file extension: " .. arg[2])
+
 if arg[1]:sub(-1) ~= "/" then
     arg[1] = arg[1] .. "/"
 end
 
 -- https://github.com/libvips/lua-vips
 local vips = require("vips")
-
--- Maximum tileset size is 4096 x 4096, increase if needed.
-local tileset = vips.Image.black(4096, 4096, { bands = 4 })
 
 local format, err = io.open(arg[3], "r")
 assert(format, err)
@@ -51,12 +51,17 @@ end
 
 format:close()
 
+-- Maximum tileset size is 4096 x 4096, increase if necessary.
+local tileset = vips.Image.black(4096, 4096, { bands = 4 })
+
+local tile_count = 0
+
+local tile_scaling_factor = 8
+
 local tile_x = 1
 local tile_y = 1
 local tileset_width = 0
 local tileset_height = 0
-local tile_count = 0
-local tile_scaling_factor = 8
 
 local function merge(axis, cmd_args)
     local current_merge_length = 0
